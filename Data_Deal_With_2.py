@@ -3,15 +3,15 @@ import os
 
 # --- 1. 配置输入和输出文件路径 ---
 # ⚠️ 请在这里配置你的文件夹路径
-input_folder = r'C:\Users\23688\Desktop\实验数据\0803Data\重新采集用于训练的原始数据\处理后的数据\Train_Data'
+input_folder = r'C:\Users\23688\Desktop\实验数据\0803Data\重新采集用于训练的原始数据\处理后的数据\u_y_Data'
 output_folder = r'C:\Users\23688\Desktop\实验数据\0803Data\重新采集用于训练的原始数据\处理后的数据\Train_Data'
 
 # ⚠️ 请在这里确认你的输入文件名
-u_history_filename = '0_200_400u.csv'
-y_history_filename = '0_200_400y.csv'
+u_history_filename = '400_300_200_100u.csv'
+y_history_filename = '400_300_200_100y.csv'
 
 # 这是处理后要保存的文件名，可以自定义
-output_filename = '0_200_400_Trainingdata.csv'
+output_filename = '400_300_200_100_Trainingdata.csv'
 
 # --- 使用 os.path.join() 智能地组合完整路径 ---
 u_file_path = os.path.join(input_folder, u_history_filename)
