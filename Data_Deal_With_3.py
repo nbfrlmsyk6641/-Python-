@@ -1,3 +1,5 @@
+# 合并训练数据，得到总的训练数据文件
+
 import pandas as pd
 import os
 
