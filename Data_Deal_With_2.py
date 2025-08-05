@@ -1,3 +1,5 @@
+# 按照网络输入向量的定义合并输入输出数据用于网络训练
+
 import pandas as pd
 import os
 
