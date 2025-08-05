@@ -1,3 +1,5 @@
+# 将原始训练数据集划分为训练集、验证集和测试集
+
 import pandas as pd
 import os
 import math
