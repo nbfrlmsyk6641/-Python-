@@ -4,8 +4,8 @@ import numpy as np
 
 # --- 1. 配置输入输出文件夹及文件名 ---
 # ⚠️ 请在这里配置你的文件夹路径
-input_folder = r'C:\Users\23688\Desktop\实验数据\0803Data\重新采集用于训练的原始数据\处理后的数据\Train_Data'
-output_folder = r'C:\Users\23688\Desktop\实验数据\0803Data\重新采集用于训练的原始数据\处理后的数据\Train_Data'
+input_folder = r'C:\Users\23688\Desktop\实验数据\0805\非0开始\处理后的数据\u&&y'
+output_folder = r'C:\Users\23688\Desktop\实验数据\0805\非0开始\处理后的数据\u&&y'
 
 # 定义输入文件名
 train_filename = 'train_set.csv'

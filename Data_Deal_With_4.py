@@ -6,11 +6,11 @@ import math
 
 # --- 1. 配置输入输出文件及划分比例 ---
 # ⚠️ 请在这里配置你的文件夹路径
-input_folder = r'C:\Users\23688\Desktop\实验数据\0803Data\重新采集用于训练的原始数据\处理后的数据\Train_Data'
-output_folder = r'C:\Users\23688\Desktop\实验数据\0803Data\重新采集用于训练的原始数据\处理后的数据\Train_Data'
+input_folder = r'C:\Users\23688\Desktop\实验数据\0805\非0开始\处理后的数据\u&&y'
+output_folder = r'C:\Users\23688\Desktop\实验数据\0805\非0开始\处理后的数据\u&&y'
 
 # ⚠️ 请在这里确认你的输入文件名
-input_filename = 'Raw_Trainingdata(280000).csv'
+input_filename = 'Raw_Training_data(195900).csv'
 
 # 定义划分比例
 train_ratio = 0.70
