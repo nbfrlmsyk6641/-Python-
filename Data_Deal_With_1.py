@@ -6,12 +6,12 @@
 
 # # --- 1. 配置输入和输出文件路径 ---
 # # ⚠️ 请在这里修改你的输入文件夹和文件名
-# input_folder = r'F:\实验数据\0813\谐振数据'
-# input_filename = 'sdd_421.csv'
+# input_folder = r'F:\实验数据\0813\alpha自调节实验\5'
+# input_filename = 'sdd_439.csv'
 
 # # ⚠️ 请在这里修改你希望保存结果的文件夹
-# output_folder = r'F:\实验数据\0813\谐振数据\处理后的数据'
-# output_filename = '0813_wm_r.csv'
+# output_folder = r'F:\实验数据\0813\alpha自调节实验\5\处理后的数据'
+# output_filename = '0813_wm_5.csv'
 
 # # 使用 os.path.join() 来智能地合并路径，这是最推荐的做法
 # # 它会自动处理Windows(\)和Mac/Linux(/)下不同的路径分隔符
@@ -52,18 +52,19 @@
 # except Exception as e:
 #     print(f"❌ 处理过程中发生未知错误: {e}")
 
+
 # 处理Te的数据
 import pandas as pd
 import os # 导入os模块，用于处理文件和目录
 
 # --- 1. 配置输入和输出文件路径 ---
 # ⚠️ 请在这里修改你的输入文件夹和文件名
-input_folder = r'F:\实验数据\0813\谐振数据'
-input_filename = 'sdd_423.csv'
+input_folder = r'F:\实验数据\0813\alpha自调节实验\5'
+input_filename = 'sdd_442.csv'
 
 # ⚠️ 请在这里修改你希望保存结果的文件夹
-output_folder = r'F:\实验数据\0813\谐振数据\处理后的数据'
-output_filename = '0813_ISE_r.csv'  
+output_folder = r'F:\实验数据\0813\alpha自调节实验\5\处理后的数据'
+output_filename = '0813_ISE_5.csv'  
 
 # 使用 os.path.join() 来智能地合并路径
 input_file_path = os.path.join(input_folder, input_filename)
