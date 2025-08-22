@@ -1,0 +1,216 @@
+# import pandas as pd
+# import os
+
+# # --- 1. 请在这里配置您的文件和参数 ---
+
+# # 定义输入和输出文件夹的路径
+# input_folder = r'F:\实验数据\0820\特征数据\谐振模态\第三次采集\处理后的数据'
+# output_folder = r'F:\实验数据\0820\特征数据\谐振模态\第三次采集\处理后的数据'
+
+# # 定义输入文件名
+# input_filename = '0820_Feature_R_3.csv'
+
+# # 定义输出文件名
+# output_filename = '0820_Feature_R_3_6.70s_to_6.85s.csv'
+
+# # 【非常重要】请在这里填写您的CSV文件中代表“时间”的列名
+# # 您的文件第一列的列名是什么，就填什么。例如 'Time', '时间(s)', 'timestamp' 等
+# time_column_name = 'Time' 
+
+# # 定义需要提取的时间范围 (单位：秒)
+# start_time = 6.70
+# end_time = 6.85
+
+# # --- 准备工作 ---
+# input_file_path = os.path.join(input_folder, input_filename)
+# output_file_path = os.path.join(output_folder, output_filename)
+
+# # 如果输出文件夹不存在，则自动创建
+# if not os.path.exists(output_folder):
+#     os.makedirs(output_folder)
+#     print(f"输出文件夹不存在，已自动创建: {output_folder}")
+
+# print(f"--- 开始处理文件: {input_filename} ---")
+
+# try:
+#     # --- 2. 读取完整的CSV文件 ---
+#     print("正在读取源文件...")
+#     df = pd.read_csv(input_file_path)
+#     print(f"文件读取成功，共 {len(df)} 行数据。")
+
+#     # --- 3. 根据时间范围筛选数据 ---
+#     print(f"正在根据时间列 '{time_column_name}' 筛选数据，范围: {start_time}s 至 {end_time}s...")
+    
+#     # 这是实现筛选的核心逻辑
+#     # (df[time_column_name] >= start_time) 会判断每一行的时间是否大于等于开始时间
+#     # (df[time_column_name] <= end_time) 会判断每一行的时间是否小于等于结束时间
+#     # & 符号表示两个条件必须同时满足
+#     condition = (df[time_column_name] >= start_time) & (df[time_column_name] <= end_time)
+    
+#     # 将满足条件的行提取出来
+#     extracted_df = df[condition]
+
+#     # --- 4. 检查结果并保存 ---
+#     if extracted_df.empty:
+#         print(f"⚠️ 警告：在指定的时间范围 {start_time}s - {end_time}s 内没有找到任何数据。")
+#     else:
+#         print(f"成功提取到 {len(extracted_df)} 行数据。")
+        
+#         # 将提取出的数据保存到新的CSV文件，index=False表示不保存行索引
+#         extracted_df.to_csv(output_file_path, index=False)
+        
+#         print("-" * 30)
+#         print(f"✅ 处理完成！")
+#         print(f"提取的数据已保存至: {output_filename}")
+
+# except FileNotFoundError:
+#     print(f"❌ 错误：找不到文件 '{input_file_path}'。请检查输入文件夹路径和文件名是否正确。")
+# except KeyError:
+#     print(f"❌ 错误：在文件中找不到名为 '{time_column_name}' 的时间列。")
+#     print("👉 请检查第18行的 `time_column_name` 变量是否与您CSV文件中的实际列名完全匹配（大小写敏感）。")
+# except Exception as e:
+#     print(f"❌ 处理过程中发生未知错误: {e}")
+
+
+# import pandas as pd
+# import os
+
+# # --- 1. 请在这里配置您的文件路径 ---
+
+# # 文件夹路径，应与上一步的输出文件夹相同
+# input_folder = r'F:\实验数据\0820\特征数据\处理后的数据'
+# output_folder = r'F:\实验数据\0820\特征数据\处理后的数据'
+
+# # 需要读取的输入文件名 (即上一步生成的文件)
+# input_filename = '0820_Feature_D_2_0.23s_to_0.53s.csv'
+
+# # 处理后要保存的新文件名
+# output_filename = '0820_Feature_D_2.csv'
+
+
+# # --- 准备工作 ---
+# input_file_path = os.path.join(input_folder, input_filename)
+# output_file_path = os.path.join(output_folder, output_filename)
+
+# # 如果输出文件夹不存在，则自动创建
+# if not os.path.exists(output_folder):
+#     os.makedirs(output_folder)
+#     print(f"输出文件夹不存在，已自动创建: {output_folder}")
+
+# print(f"--- 开始处理文件: {input_filename} ---")
+
+# try:
+#     # --- 2. 读取已提取的数据文件 ---
+#     print("正在读取源文件...")
+#     df = pd.read_csv(input_file_path)
+#     print(f"文件读取成功，原始数据包含 {df.shape[0]} 行 和 {df.shape[1]} 列。")
+
+#     # --- 3. 添加四列新的数据，并全部填充为0 ---
+#     print("正在添加新的 A1, A2, A3, A4 列...")
+    
+#     # 直接为DataFrame分配新列，并将其值设置为0
+#     # Pandas会自动将这个0值“广播”到所有行
+#     df['A1'] = 1
+#     df['A2'] = 0
+#     df['A3'] = 1
+#     df['A4'] = 0
+
+#     print("新列添加成功！")
+#     # 打印前5行数据以供预览
+#     print("数据预览 (前5行):")
+#     print(df.head())
+    
+#     # --- 4. 将修改后的数据保存到新文件 ---
+#     df.to_csv(output_file_path, index=False)
+
+#     print("-" * 30)
+#     print(f"✅ 处理完成！")
+#     print(f"最终数据包含 {df.shape[0]} 行 和 {df.shape[1]} 列。")
+#     print(f"结果已保存至: {output_filename}")
+
+# except FileNotFoundError:
+#     print(f"❌ 错误：找不到文件 '{input_file_path}'。请检查输入文件夹路径和文件名是否正确。")
+# except Exception as e:
+#     print(f"❌ 处理过程中发生未知错误: {e}")
+
+import pandas as pd
+import os
+
+# --- 1. 请在这里配置您的文件和参数 ---
+
+# 文件夹路径
+input_folder = r'F:\实验数据\0820\特征数据\处理后的数据' 
+output_folder = r'F:\实验数据\0820\特征数据\处理后的数据' 
+
+# ⚠️ 请在这里按【期望的合并顺序】列出您的6个CSV文件名
+# 这些文件应该是您上一步添加完A1-A4列后得到的文件
+file_names = [
+    '0820_Feature_N_1.csv',
+    '0820_Feature_N_2.csv',
+    '0820_Feature_R_1.csv',
+    '0820_Feature_R_2.csv',
+    '0820_Feature_D_1.csv',
+    '0820_Feature_D_2.csv'
+]
+
+# 这是最终合并后要保存的文件名
+output_filename = 'feature_dataset.csv'
+
+# 这是最终文件要求的10个列名
+final_column_names = ['F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'A1', 'A2', 'A3', 'A4']
+
+# --- 准备工作 ---
+output_file_path = os.path.join(output_folder, output_filename)
+list_of_processed_dfs = []
+
+# 如果输出文件夹不存在，则自动创建
+if not os.path.exists(output_folder):
+    os.makedirs(output_folder)
+    print(f"输出文件夹不存在，已自动创建: {output_folder}")
+
+print("--- 开始批量提取、合并并重命名CSV文件 ---")
+
+try:
+    # --- 2. 循环处理文件列表中的每一个文件 ---
+    for filename in file_names:
+        file_path = os.path.join(input_folder, filename)
+        print(f"正在处理文件: {filename} ...")
+        
+        # 定义需要提取的列的索引 (B列到K列)
+        # B=1, C=2, D=3, E=4, F=5, G=6, H=7, I=8, J=9, K=10
+        # list(range(1, 11)) 会自动生成列表 [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        columns_to_extract = list(range(1, 11))
+        
+        # 读取CSV文件，并使用 usecols 只选择我们需要的列
+        df = pd.read_csv(file_path, usecols=columns_to_extract)
+        
+        # 将处理好的DataFrame添加到我们的列表中
+        list_of_processed_dfs.append(df)
+    
+    # --- 3. 检查是否成功读取了任何文件 ---
+    if not list_of_processed_dfs:
+        print("⚠️ 警告：未能读取任何数据文件，请检查文件列表和输入文件夹路径。")
+    else:
+        # --- 4. 将列表中的所有数据（DataFrame）合并成一个 ---
+        print("\n所有文件处理完毕，正在合并...")
+        combined_df = pd.concat(list_of_processed_dfs, ignore_index=True)
+
+        # --- 5. 为合并后的DataFrame设置最终的列名 ---
+        combined_df.columns = final_column_names
+
+        # --- 6. 保存最终合并好的文件 ---
+        combined_df.to_csv(output_file_path, index=False)
+
+        print("-" * 30)
+        print(f"✅ 所有文件合并成功！")
+        print(f"共处理了 {len(list_of_processed_dfs)} 个文件。")
+        print(f"最终合并的数据总行数: {len(combined_df)}")
+        print(f"结果已保存到文件: {output_filename}")
+
+except FileNotFoundError as e:
+    print(f"❌ 错误：找不到文件。")
+    print(f"请检查文件是否存在于指定路径: {e.filename}")
+except Exception as e:
+    print(f"❌ 处理过程中发生未知错误: {e}")
+
+
