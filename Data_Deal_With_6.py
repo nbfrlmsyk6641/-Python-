@@ -4,22 +4,22 @@
 # # --- 1. 请在这里配置您的文件和参数 ---
 
 # # 定义输入和输出文件夹的路径
-# input_folder = r'F:\实验数据\0820\特征数据\谐振模态\第三次采集\处理后的数据'
-# output_folder = r'F:\实验数据\0820\特征数据\谐振模态\第三次采集\处理后的数据'
+# input_folder = r'F:\实验数据\0824\扰动模态\0.08倍\处理后的数据'
+# output_folder = r'F:\实验数据\0824\扰动模态\0.08倍\处理后的数据'
 
 # # 定义输入文件名
-# input_filename = '0820_Feature_R_3.csv'
+# input_filename = '0824_Feature_D_0.08.csv'
 
 # # 定义输出文件名
-# output_filename = '0820_Feature_R_3_6.70s_to_6.85s.csv'
+# output_filename = '0824_Feature_D_0.08_0.14s_to_0.34s.csv'
 
 # # 【非常重要】请在这里填写您的CSV文件中代表“时间”的列名
 # # 您的文件第一列的列名是什么，就填什么。例如 'Time', '时间(s)', 'timestamp' 等
 # time_column_name = 'Time' 
 
 # # 定义需要提取的时间范围 (单位：秒)
-# start_time = 6.70
-# end_time = 6.85
+# start_time = 0.14
+# end_time = 0.34
 
 # # --- 准备工作 ---
 # input_file_path = os.path.join(input_folder, input_filename)
@@ -78,14 +78,14 @@
 # # --- 1. 请在这里配置您的文件路径 ---
 
 # # 文件夹路径，应与上一步的输出文件夹相同
-# input_folder = r'F:\实验数据\0820\特征数据\处理后的数据'
-# output_folder = r'F:\实验数据\0820\特征数据\处理后的数据'
+# input_folder = r'F:\实验数据\0824\处理后的数据'
+# output_folder = r'F:\实验数据\0824\处理后的数据'
 
 # # 需要读取的输入文件名 (即上一步生成的文件)
-# input_filename = '0820_Feature_D_2_0.23s_to_0.53s.csv'
+# input_filename = '0824_Feature_D_0.08_0.14s_to_0.34s.csv'
 
 # # 处理后要保存的新文件名
-# output_filename = '0820_Feature_D_2.csv'
+# output_filename = '0824_Feature_D_5.csv'
 
 
 # # --- 准备工作 ---
@@ -133,31 +133,40 @@
 # except Exception as e:
 #     print(f"❌ 处理过程中发生未知错误: {e}")
 
+
+
+
 # import pandas as pd
 # import os
 
 # # --- 1. 请在这里配置您的文件和参数 ---
 
 # # 文件夹路径
-# input_folder = r'F:\实验数据\0820\特征数据\处理后的数据' 
-# output_folder = r'F:\实验数据\0820\特征数据\处理后的数据' 
+# input_folder = r'F:\实验数据\0824\处理后的数据' 
+# output_folder = r'F:\实验数据\0824\处理后的数据' 
 
 # # ⚠️ 请在这里按【期望的合并顺序】列出您的6个CSV文件名
 # # 这些文件应该是您上一步添加完A1-A4列后得到的文件
 # file_names = [
-#     '0820_Feature_N_1.csv',
-#     '0820_Feature_N_2.csv',
-#     '0820_Feature_R_1.csv',
-#     '0820_Feature_R_2.csv',
-#     '0820_Feature_D_1.csv',
-#     '0820_Feature_D_2.csv'
+#     '0824_Feature_N_1.csv',
+#     '0824_Feature_R_1.csv',
+#     '0824_Feature_R_2.csv',
+#     '0824_Feature_R_3.csv',
+#     '0824_Feature_R_4.csv',
+#     '0824_Feature_R_5.csv',
+#     '0824_Feature_R_6.csv',
+#     '0824_Feature_D_1.csv',
+#     '0824_Feature_D_2.csv',
+#     '0824_Feature_D_3.csv',
+#     '0824_Feature_D_4.csv',
+#     '0824_Feature_D_5.csv'
 # ]
 
 # # 这是最终合并后要保存的文件名
 # output_filename = 'feature_dataset.csv'
 
 # # 这是最终文件要求的10个列名
-# final_column_names = ['F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'A1', 'A2', 'A3', 'A4']
+# final_column_names = ['F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'A1', 'A2', 'A3', 'A4']
 
 # # --- 准备工作 ---
 # output_file_path = os.path.join(output_folder, output_filename)
@@ -177,10 +186,10 @@
 #         print(f"正在处理文件: {filename} ...")
         
 #         # 定义需要提取的列的索引 (B列到K列)
-#         # B=1, C=2, D=3, E=4, F=5, G=6, H=7, I=8, J=9, K=10
-#         # list(range(1, 11)) 会自动生成列表 [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-#         columns_to_extract = list(range(1, 11))
-        
+#         # B=1, C=2, D=3, E=4, F=5, G=6, H=7, I=8, J=9, K=10,L=11,M=12
+#         # list(range(1, 11)) 会自动生成列表 [1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11,12]
+#         columns_to_extract = list(range(1, 13))
+
 #         # 读取CSV文件，并使用 usecols 只选择我们需要的列
 #         df = pd.read_csv(file_path, usecols=columns_to_extract)
         
@@ -213,6 +222,11 @@
 # except Exception as e:
 #     print(f"❌ 处理过程中发生未知错误: {e}")
 
+
+
+
+
+
 import pandas as pd
 import os
 
@@ -223,7 +237,7 @@ input_folder = r'F:\实验数据\SVM_MATLAB' # 上一步的输出文件夹
 output_folder = r'F:\实验数据\SVM_MATLAB' # 存放最终拆分文件的文件夹
 
 # ⚠️ 请在这里确认您要处理的输入文件名
-input_filename = 'Formatted_Test_Data.xlsx'
+input_filename = 'Formatted_Train_Data.xlsx'
 
 
 # --- 准备工作 ---
@@ -246,38 +260,38 @@ try:
 
     # --- 3. 按照需求逐一创建和保存新的Excel文件 ---
 
-    # 任务1: 创建 A1_Test.xlsx
-    print("正在创建 A1_Test.xlsx ...")
-    cols_to_extract_a1 = ['F1', 'F3', 'A1']
+    # 任务1: 创建 A1_Train.xlsx
+    print("正在创建 A1_Train.xlsx ...")
+    cols_to_extract_a1 = ['F1', 'F3', 'F7', 'F8', 'A1']
     df_a1 = source_df[cols_to_extract_a1]
     # 注意：因为我们选取的列名和最终要求的列名一致，所以不需要重命名
-    output_path_a1 = os.path.join(output_folder, 'A1_Test.xlsx')
+    output_path_a1 = os.path.join(output_folder, 'A1_Train.xlsx')
     df_a1.to_excel(output_path_a1, index=False)
-    print(f"✅ A1_Test.xlsx 创建成功 ({len(df_a1.columns)} 列)。")
+    print(f"✅ A1_Train.xlsx 创建成功 ({len(df_a1.columns)} 列)。")
 
-    # 任务2: 创建 A2_Test.xlsx
-    print("正在创建 A2_Test.xlsx ...")
-    cols_to_extract_a2 = ['F2', 'F3', 'A2']
-    df_a2 = source_df[cols_to_extract_a2]
-    output_path_a2 = os.path.join(output_folder, 'A2_Test.xlsx')
-    df_a2.to_excel(output_path_a2, index=False)
-    print(f"✅ A2_Test.xlsx 创建成功 ({len(df_a2.columns)} 列)。")
+    # # 任务2: 创建 A2_Test.xlsx
+    # print("正在创建 A2_Test.xlsx ...")
+    # cols_to_extract_a2 = ['F2', 'F3', 'F7', 'A2']
+    # df_a2 = source_df[cols_to_extract_a2]
+    # output_path_a2 = os.path.join(output_folder, 'A2_Test.xlsx')
+    # df_a2.to_excel(output_path_a2, index=False)
+    # print(f"✅ A2_Test.xlsx 创建成功 ({len(df_a2.columns)} 列)。")
 
-    # 任务3: 创建 A3_Test.xlsx
-    print("正在创建 A3_Test.xlsx ...")
-    cols_to_extract_a3 = ['F4', 'A3']
-    df_a3 = source_df[cols_to_extract_a3]
-    output_path_a3 = os.path.join(output_folder, 'A3_Test.xlsx')
-    df_a3.to_excel(output_path_a3, index=False)
-    print(f"✅ A3_Test.xlsx 创建成功 ({len(df_a3.columns)} 列)。")
+    # # 任务3: 创建 A3_Test.xlsx
+    # print("正在创建 A3_Test.xlsx ...")
+    # cols_to_extract_a3 = ['F2', 'F4', 'F8', 'A3']
+    # df_a3 = source_df[cols_to_extract_a3]
+    # output_path_a3 = os.path.join(output_folder, 'A3_Test.xlsx')
+    # df_a3.to_excel(output_path_a3, index=False)
+    # print(f"✅ A3_Test.xlsx 创建成功 ({len(df_a3.columns)} 列)。")
 
-    # 任务4: 创建 A4_Test.xlsx
-    print("正在创建 A4_Test.xlsx ...")
-    cols_to_extract_a4 = ['F5', 'F6', 'A4']
-    df_a4 = source_df[cols_to_extract_a4]
-    output_path_a4 = os.path.join(output_folder, 'A4_Test.xlsx')
-    df_a4.to_excel(output_path_a4, index=False)
-    print(f"✅ A4_Test.xlsx 创建成功 ({len(df_a4.columns)} 列)。")
+    # # 任务4: 创建 A4_Test.xlsx
+    # print("正在创建 A4_Test.xlsx ...")
+    # cols_to_extract_a4 = ['F5', 'F6', 'F7', 'A4']
+    # df_a4 = source_df[cols_to_extract_a4]
+    # output_path_a4 = os.path.join(output_folder, 'A4_Test.xlsx')
+    # df_a4.to_excel(output_path_a4, index=False)
+    # print(f"✅ A4_Test.xlsx 创建成功 ({len(df_a4.columns)} 列)。")
 
     print("-" * 30)
     print("所有文件拆分任务已全部完成！")
