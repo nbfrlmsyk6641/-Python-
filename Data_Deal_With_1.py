@@ -6,12 +6,12 @@ import os # 导入os模块，用于处理文件和目录
 
 # --- 1. 配置输入和输出文件路径 ---
 # ⚠️ 请在这里修改你的输入文件夹和文件名
-input_folder = r'F:\实验数据\0822\特征数据\正常\第一次采集'
-input_filename = 'sdd_477.csv'
+input_folder = r'F:\实验数据\0824\谐振模态\3'
+input_filename = 'Wm.csv'
 
 # ⚠️ 请在这里修改你希望保存结果的文件夹
-output_folder = r'F:\实验数据\0822\特征数据\正常\第一次采集'
-output_filename = '0823_wm_N_1.csv'
+output_folder = r'F:\实验数据\0824\谐振模态\3\处理后的数据'
+output_filename = '0824_wm_R_3.csv'
 
 # 使用 os.path.join() 来智能地合并路径，这是最推荐的做法
 # 它会自动处理Windows(\)和Mac/Linux(/)下不同的路径分隔符
@@ -59,12 +59,12 @@ except Exception as e:
 
 # # --- 1. 配置输入和输出文件路径 ---
 # # ⚠️ 请在这里修改你的输入文件夹和文件名
-# input_folder = r'F:\实验数据\0820\特征数据\扰动模态\第二次采集（0.5倍转矩）'
-# input_filename = 'TL.csv'
+# input_folder = r'F:\实验数据\0824\谐振模态\3'
+# input_filename = 'WmErr_ISE.csv'
 
 # # ⚠️ 请在这里修改你希望保存结果的文件夹
-# output_folder = r'F:\实验数据\0820\特征数据\扰动模态\第二次采集（0.5倍转矩）\处理后的数据'
-# output_filename = '0820_TL_D_2.csv'
+# output_folder = r'F:\实验数据\0824\谐振模态\3\处理后的数据'
+# output_filename = '0824_ISE_R_3.csv'
 
 # # 使用 os.path.join() 来智能地合并路径
 # input_file_path = os.path.join(input_folder, input_filename)
@@ -87,12 +87,12 @@ except Exception as e:
 #         input_file_path,
 #         skiprows=28,
 #         header=None,
-#         usecols=[1, 2, 3]  # 读取B, C, D列
+#         usecols=[1, 2]  # 读取B, C, D列
 #     )
 
 #     # --- 3. 重命名列名 ---
-#     # 【已修改】将列名设置为 'Time' 和 'Te'
-#     df.columns = ['Time', 'TL', 'TL_real']
+#     # 【已修改】将列名设置为 'Time' 和 'ISE'
+#     df.columns = ['Time', 'ISE']
 
 #     # --- 4. 保存到新的CSV文件 ---
 #     df.to_csv(output_file_path, index=False)
@@ -100,7 +100,7 @@ except Exception as e:
 #     print("-" * 30)
 #     print(f"✅ 处理成功！")
 #     print(f"已从第29行开始提取B, C, D列数据。")
-#     print(f"重命名列为 'Time', 'TL', 'TL_real'。")
+#     print(f"重命名列为 'Time', 'ISE'。")
 #     print(f"结果已完整保存到文件: {output_file_path}")
 
 # except FileNotFoundError:
@@ -110,18 +110,18 @@ except Exception as e:
 #     print(f"❌ 处理过程中发生未知错误: {e}")
 
 
-# # 处理u的数据（控制输入量）
+# # 处理Feature的数据（特征）
 # import pandas as pd
 # import os # 导入os模块，用于处理文件和目录
 
 # # --- 1. 配置输入和输出文件路径 ---
 # # ⚠️ 请在这里修改你的输入文件夹和文件名
-# input_folder = r'F:\实验数据\0820\特征数据\扰动模态\第三次采集（1.5倍转矩）'
+# input_folder = r'F:\实验数据\0824\谐振模态\3'
 # input_filename = 'Feature.csv'
 
 # # ⚠️ 请在这里修改你希望保存结果的文件夹
-# output_folder = r'F:\实验数据\0820\特征数据\扰动模态\第三次采集（1.5倍转矩）\处理后的数据'
-# output_filename = '0820_Feature_D_3.csv'
+# output_folder = r'F:\实验数据\0824\谐振模态\3\处理后的数据'
+# output_filename = '0824_Feature_R_3.csv'
 
 # # 使用 os.path.join() 来智能地合并路径
 # input_file_path = os.path.join(input_folder, input_filename)
@@ -163,6 +163,8 @@ except Exception as e:
 #     print("请仔细检查你的输入文件夹路径和文件名是否完全正确。")
 # except Exception as e:
 #     print(f"❌ 处理过程中发生未知错误: {e}")
+
+
 
 # # 处理y的数据（系统输出量）
 # import pandas as pd
