@@ -233,89 +233,90 @@
 # except Exception as e:
 #     print(f"❌ 处理过程中发生未知错误: {e}")
 
-# import pandas as pd
-# import os
+import pandas as pd
+import os
 
-# # --- 1. 请在这里配置您的文件路径 ---
+# --- 1. 请在这里配置您的文件路径 ---
 
-# # ⚠️ 请将 'C:\Users\YourName\Desktop\新实验数据' 替换为存放您3个CSV文件的实际文件夹路径
-# data_folder = r'F:\实验数据\0830\8'
+# ⚠️ 请将 'C:\Users\YourName\Desktop\新实验数据' 替换为存放您3个CSV文件的实际文件夹路径
+data_folder = r'F:\实验数据\0831\3'
 
-# print(f"--- 开始处理文件夹中的数据: {data_folder} ---")
-# print("-" * 40)
+print(f"--- 开始处理文件夹中的数据: {data_folder} ---")
+print("-" * 40)
 
-# try:
-#     # --- 任务1: 处理 sdd_626.csv ---
-#     print("正在处理文件: sdd_626.csv ...")
-#     input_path_1 = os.path.join(data_folder, 'sdd_626.csv')
-#     output_path_1 = os.path.join(data_folder, '0830_Wm.csv')
+try:
+    # --- 任务1: 处理 sdd_632.csv ---
+    print("正在处理文件: sdd_632.csv ...")
+    input_path_1 = os.path.join(data_folder, 'sdd_632.csv')
+    output_path_1 = os.path.join(data_folder, '0831_Wm_2.csv')
+
+    # 读取数据：跳过前28行，无表头，只取B,C,D列
+    df1 = pd.read_csv(
+        input_path_1,
+        skiprows=28,
+        header=None,
+        usecols=[1, 2, 3]  # B, C, D列的索引是 1, 2, 3
+    )
     
-#     # 读取数据：跳过前28行，无表头，只取B,C,D列
-#     df1 = pd.read_csv(
-#         input_path_1,
-#         skiprows=28,
-#         header=None,
-#         usecols=[1, 2, 3]  # B, C, D列的索引是 1, 2, 3
-#     )
+    # 重命名列
+    df1.columns = ['Time', 'Wm', 'Wr']
     
-#     # 重命名列
-#     df1.columns = ['Time', 'Wm', 'Wr']
+    # 保存新文件
+    df1.to_csv(output_path_1, index=False)
+    print(f"✅ 'sdd_633.csv' 处理完成，结果已保存至 '0831_Wm_2.csv'")
+    print("-" * 40)
+
+    # --- 任务2: 处理 sdd_633.csv ---
+    print("正在处理文件: sdd_633.csv ...")
+    input_path_2 = os.path.join(data_folder, 'sdd_633.csv')
+    output_path_2 = os.path.join(data_folder, '0831_Te_2.csv')
+
+    # 读取数据：跳过前28行，无表头，只取B,C,D列
+    df2 = pd.read_csv(
+        input_path_2,
+        skiprows=28,
+        header=None,
+        usecols=[1, 2, 3]  # B, C, D列
+    )
+
+    # 重命名列
+    df2.columns = ['Time', 'Te', 'Ts']
+
+    # 保存新文件
+    df2.to_csv(output_path_2, index=False)
+    print(f"✅ 'sdd_633.csv' 处理完成，结果已保存至 '0831_Te_2.csv'")
+    print("-" * 40)
+
+    # --- 任务3: 处理 sdd_634.csv ---
+    print("正在处理文件: sdd_634.csv ...")
+    input_path_3 = os.path.join(data_folder, 'sdd_634.csv')
+    output_path_3 = os.path.join(data_folder, '0831_Alpha_2.csv')
+
+    # 读取数据：跳过前28行，无表头，只取B,C列
+    df3 = pd.read_csv(
+        input_path_3,
+        skiprows=28,
+        header=None,
+        usecols=[1, 2]  # B, C列的索引是 1, 2
+    )
+
+    # 重命名列
+    df3.columns = ['Time', 'Alpha']
+
+    # 保存新文件
+    df3.to_csv(output_path_3, index=False)
+    print(f"✅ 'sdd_634.csv' 处理完成，结果已保存至 '0831_Alpha_2.csv'")
+    print("-" * 40)
     
-#     # 保存新文件
-#     df1.to_csv(output_path_1, index=False)
-#     print(f"✅ 'sdd_626.csv' 处理完成，结果已保存至 '0830_Wm.csv'")
-#     print("-" * 40)
+    print("所有文件处理任务已全部完成！")
 
-#     # --- 任务2: 处理 sdd_627.csv ---
-#     print("正在处理文件: sdd_627.csv ...")
-#     input_path_2 = os.path.join(data_folder, 'sdd_627.csv')
-#     output_path_2 = os.path.join(data_folder, '0830_Te.csv')
+except FileNotFoundError as e:
+    print(f"❌ 错误：找不到文件。")
+    print(f"请检查文件 '{e.filename}' 是否存在于您指定的文件夹中。")
+except Exception as e:
+    print(f"❌ 处理过程中发生未知错误: {e}")
 
-#     # 读取数据：跳过前28行，无表头，只取B,C,D列
-#     df2 = pd.read_csv(
-#         input_path_2,
-#         skiprows=28,
-#         header=None,
-#         usecols=[1, 2, 3]  # B, C, D列
-#     )
 
-#     # 重命名列
-#     df2.columns = ['Time', 'Te', 'Ts']
-
-#     # 保存新文件
-#     df2.to_csv(output_path_2, index=False)
-#     print(f"✅ 'sdd_627.csv' 处理完成，结果已保存至 '0830_Te.csv'")
-#     print("-" * 40)
-
-#     # --- 任务3: 处理 sdd_628.csv ---
-#     print("正在处理文件: sdd_628.csv ...")
-#     input_path_3 = os.path.join(data_folder, 'sdd_628.csv')
-#     output_path_3 = os.path.join(data_folder, '0830_Alpha.csv')
-
-#     # 读取数据：跳过前28行，无表头，只取B,C列
-#     df3 = pd.read_csv(
-#         input_path_3,
-#         skiprows=28,
-#         header=None,
-#         usecols=[1, 2]  # B, C列的索引是 1, 2
-#     )
-
-#     # 重命名列
-#     df3.columns = ['Time', 'Alpha']
-
-#     # 保存新文件
-#     df3.to_csv(output_path_3, index=False)
-#     print(f"✅ 'sdd_628.csv' 处理完成，结果已保存至 '0830_Alpha.csv'")
-#     print("-" * 40)
-    
-#     print("所有文件处理任务已全部完成！")
-
-# except FileNotFoundError as e:
-#     print(f"❌ 错误：找不到文件。")
-#     print(f"请检查文件 '{e.filename}' 是否存在于您指定的文件夹中。")
-#     # print(f"请确认您的文件夹路径设置正确，且文件夹内包含 sdd_608.csv, sdd_609.csv, sdd_610.csv 这三个文件。")
-# except Exception as e:
-#     print(f"❌ 处理过程中发生未知错误: {e}")
 
 # import pandas as pd
 # import os
@@ -323,21 +324,21 @@
 # # --- 1. 请在这里配置您的文件和参数 ---
 
 # # 定义输入和输出文件夹的路径
-# input_folder = r'F:\实验数据\0830\Init' 
-# output_folder = r'F:\实验数据\0830\Init' 
+# input_folder = r'F:\实验数据\0830\6' 
+# output_folder = r'F:\实验数据\0830\6' 
 
 # # 定义输入文件名 
-# input_filename = '0830_Wm_Init.csv'
+# input_filename = '0830_Alpha_6.csv'
 
 # # 定义输出文件名
-# output_filename = 'Wm_6.306s_to_6.806s.csv'
+# output_filename = 'Alpha_9s_to_11s.csv'
 
 # time_column_name_original = 'Time' 
-# data_column_name_original = 'Wm'  
+# data_column_name_original = 'Alpha'  
 
 # # 定义需要提取的时间范围 (单位：秒)
-# start_time = 6.306
-# end_time = 6.806
+# start_time = 9.0
+# end_time = 11.0
 
 # # --- 准备工作 ---
 # input_file_path = os.path.join(input_folder, input_filename)
@@ -374,10 +375,10 @@
         
 #         # 创建一个新的DataFrame，包含两列
 #         # 第一列 'Time': 将提取出的时间列整体减去起始时间
-#         # 第二列 'Wm': 直接使用提取出的原始数据列
+#         # 第二列 'Te': 直接使用提取出的原始数据列
 #         final_df = pd.DataFrame({
 #             'Time': time_slice_df[time_column_name_original] - start_time,
-#             'Wm': time_slice_df[data_column_name_original]
+#             'Alpha': time_slice_df[data_column_name_original]
 #         })
         
 #         # 可选：为了避免浮点数精度问题，可以将时间列四舍五入到毫秒
@@ -409,28 +410,28 @@
 # # --- 1. 请在这里配置您的文件和参数 ---
 
 # # 定义输入和输出文件夹的路径
-# input_folder = r'F:\实验数据\0830\1' 
-# output_folder = r'F:\实验数据\0830\1' 
+# input_folder = r'F:\实验数据\0830\6' 
+# output_folder = r'F:\实验数据\0830\6' 
 
 # # 定义输入文件名
-# input_filename = '0830_Wm_1.csv' # ⚠️ 请替换为您的文件名
+# input_filename = '0830_Te_6.csv' # ⚠️ 请替换为您的文件名
 
 # # 定义输出文件名
-# output_filename = 'Wm_8.5s_to_10s.csv'
+# output_filename = 'Te_9.5s_to_11s.csv'
 
 # # 【非常重要】请在这里填写您的CSV文件中代表“时间”和“数据”的实际列名
 # time_column_name_original = 'Time' 
-# data_column_name_original = 'Wm' # ⚠️ 请替换为您的B列数据对应的列名
+# data_column_name_original = 'Te' # ⚠️ 请替换为您的B列数据对应的列名
 
 # # 定义需要提取的原始时间范围 (单位：秒)
-# start_time_original = 8.5
-# end_time_original = 10.0
+# start_time_original = 9.5
+# end_time_original = 11.0
 
 # # 定义新的时间序列的起始点 (单位：秒)
 # start_time_new = 0.5
 
 # # 定义新文件中数据列的名称
-# new_data_column_name = 'Wm' 
+# new_data_column_name = 'Te' 
 
 # # --- 准备工作 ---
 # input_file_path = os.path.join(input_folder, input_filename)
@@ -503,22 +504,22 @@
 # # --- 1. 请在这里配置您的文件和参数 ---
 
 # # 存放您两个源文件的文件夹
-# input_folder = r'F:\实验数据\0830\1'
+# input_folder = r'F:\实验数据\0830\6'
 # # 存放最终合并结果的文件夹
-# output_folder = r'F:\实验数据\0830\1'
+# output_folder = r'F:\实验数据\0830\6'
 
 # # 第一个文件应该是包含 0s-0.499s 数据的文件
 # # 第二个文件应该是包含 0.5s-1.999s 数据的文件
 # files_to_combine = [
-#     'Wm_6.306s_to_6.806s.csv', 
-#     'Wm_8.5s_to_10s.csv'     
+#     'Te_6.306s_to_6.806s.csv', 
+#     'Te_9.5s_to_11s.csv'     
 # ]
 
 # # 这是最终合并后要保存的文件名
-# output_filename = 'Wm_Alpha_1.csv'
+# output_filename = 'Te_Alpha_6.csv'
 
 # # 这是最终文件要求的列名
-# final_column_names = ['Time', 'Wm']
+# final_column_names = ['Time', 'Te']
 
 
 # # --- 准备工作 ---
@@ -572,6 +573,8 @@
 #     print(f"请检查文件是否存在于指定路径: {e.filename}")
 # except Exception as e:
 #     print(f"❌ 处理过程中发生未知错误: {e}")
+
+
 
 
 
