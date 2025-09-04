@@ -4,15 +4,15 @@ import os
 # --- 1. 请在这里配置您的基本信息 ---
 
 # ⚠️ 请将此路径修改为您存放24个文件夹的根目录
-# 例如，如果您的文件夹是 F:\实验数据\0831\1, F:\实验数据\0831\2, ...
-# 那么根目录就是 F:\实验数据\0831
-base_folder = r'F:\实验数据\0831'
+# 例如，如果您的文件夹是 F:\实验数据\0903\1, F:\实验数据\0903\2, ...
+# 那么根目录就是 F:\实验数据\0903
+base_folder = r'F:\实验数据\0903'
 
 # 总共要处理的文件夹（组）数量
-num_groups = 24
+num_groups = 4
 
 # 第1组中，第一个文件的起始编号 (例如 sdd_629.csv 中的 629)
-start_file_number = 629
+start_file_number = 701
 
 print(f"--- 开始批量处理 {num_groups} 组实验数据 ---")
 print(f"根目录: {base_folder}")
@@ -42,9 +42,9 @@ for i in range(1, num_groups + 1):
         input_alpha_filename = f'sdd_{folder_start_num + 2}.csv'
         
         # 输出文件名
-        output_wm_filename = f'0831_Wm_{i}.csv'
-        output_te_filename = f'0831_Te_{i}.csv'
-        output_alpha_filename = f'0831_Alpha_{i}.csv'
+        output_wm_filename = f'0903_Wm_{i}.csv'
+        output_te_filename = f'0903_Te_{i}.csv'
+        output_alpha_filename = f'0903_Alpha_{i}.csv'
 
         # --- 任务1: 处理 Wm 数据 (sdd_***) ---
         input_path = os.path.join(current_folder_path, input_wm_filename)
