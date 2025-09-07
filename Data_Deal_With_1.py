@@ -6,12 +6,12 @@
 
 # # --- 1. 配置输入和输出文件路径 ---
 # # ⚠️ 请在这里修改你的输入文件夹和文件名
-# input_folder = r'F:\实验数据\0824\谐振模态\3'
-# input_filename = 'Wm.csv'
+# input_folder = r'F:\实验数据\0903\5'
+# input_filename = 'sdd_718.csv'
 
 # # ⚠️ 请在这里修改你希望保存结果的文件夹
-# output_folder = r'F:\实验数据\0824\谐振模态\3\处理后的数据'
-# output_filename = '0824_wm_R_3.csv'
+# output_folder = r'F:\实验数据\0903\5\处理后的数据'
+# output_filename = '0903_TL_b_1.csv'
 
 # # 使用 os.path.join() 来智能地合并路径，这是最推荐的做法
 # # 它会自动处理Windows(\)和Mac/Linux(/)下不同的路径分隔符
@@ -38,7 +38,7 @@
 #     )
 
 #     # --- 3. 重命名列名 ---
-#     df.columns = ['Time', 'Wm', 'Wr']
+#     df.columns = ['Time', 'TL', 'TL^']
 
 #     # --- 4. 保存到新的CSV文件 ---
 #     df.to_csv(output_file_path, index=False)

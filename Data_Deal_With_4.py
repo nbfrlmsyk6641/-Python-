@@ -6,15 +6,15 @@ import math
 
 # --- 1. 配置输入输出文件及划分比例 ---
 # ⚠️ 请在这里配置你的文件夹路径
-input_folder = r'C:\Users\23688\Desktop\实验数据\0805\非0开始\处理后的数据\u&&y'
-output_folder = r'C:\Users\23688\Desktop\实验数据\0805\非0开始\处理后的数据\u&&y'
+input_folder = r'F:\实验数据\0905\负载-转速数据'
+output_folder = r'F:\实验数据\0905\负载-转速数据'
 
 # ⚠️ 请在这里确认你的输入文件名
-input_filename = 'Raw_Training_data(195900).csv'
+input_filename = '0906_ALL.csv'
 
 # 定义划分比例
-train_ratio = 0.70
-validation_ratio = 0.15
+train_ratio = 0.8
+validation_ratio = 0.1
 # 测试集比例会自动计算得出，确保总和为1
 
 # --- 准备工作 ---
