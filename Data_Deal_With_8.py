@@ -498,81 +498,169 @@
 # except Exception as e:
 #     print(f"❌ 处理过程中发生未知错误: {e}")
 
+# import pandas as pd
+# import os
+
+# # --- 1. 请在这里配置您的文件和参数 ---
+
+# # 存放您两个源文件的文件夹
+# input_folder = r'F:\实验数据\0831\19'
+# # 存放最终合并结果的文件夹
+# output_folder = r'F:\实验数据\0831\19'
+
+# # 第一个文件应该是包含 0s-0.499s 数据的文件
+# # 第二个文件应该是包含 0.5s-1.999s 数据的文件
+# files_to_combine = [
+#     'Wm_4.289s_to_4.789s.csv', 
+#     'Wm_8.4s_to_9.9s.csv'     
+# ]
+
+# # 这是最终合并后要保存的文件名
+# output_filename = 'Wm_Alpha_19.csv'
+
+# # 这是最终文件要求的列名
+# final_column_names = ['Time', 'Wm']
+
+
+# # --- 准备工作 ---
+# output_file_path = os.path.join(output_folder, output_filename)
+# list_of_dfs = []
+
+# # 如果输出文件夹不存在，则自动创建
+# if not os.path.exists(output_folder):
+#     os.makedirs(output_folder)
+#     print(f"输出文件夹不存在，已自动创建: {output_folder}")
+
+# print("--- 开始合并两个CSV文件 ---")
+
+# try:
+#     # --- 2. 循环读取并处理文件列表中的文件 ---
+#     for filename in files_to_combine:
+#         file_path = os.path.join(input_folder, filename)
+#         print(f"正在读取文件: {filename} ...")
+        
+#         # 读取CSV文件
+#         df = pd.read_csv(file_path)
+        
+#         # 【关键步骤】在合并前，统一所有文件的列名
+#         # 这样做可以确保，即使第二个文件的列名是'Time', 'Data'，也能正确合并
+#         df.columns = final_column_names
+        
+#         # 将处理好的DataFrame添加到我们的列表中
+#         list_of_dfs.append(df)
+    
+#     # --- 3. 将列表中的两个DataFrame合并成一个 ---
+#     if len(list_of_dfs) == 2:
+#         print("\n两个文件读取完毕，正在合并...")
+#         # pd.concat 会将列表中的DataFrame按顺序垂直堆叠
+#         # ignore_index=True 会创建一个新的、连续的行索引 (0, 1, 2, ... 1999)
+#         combined_df = pd.concat(list_of_dfs, ignore_index=True)
+
+#         # --- 4. 保存最终合并好的文件 ---
+#         combined_df.to_csv(output_file_path, index=False)
+
+#         print("-" * 30)
+#         print(f"✅ 文件合并成功！")
+#         print(f"总数据行数: {len(combined_df)}") # 500 + 1500 = 2000
+#         print(f"时间范围: {combined_df['Time'].min()}s 至 {combined_df['Time'].max()}s")
+#         print(f"结果已保存到文件: {output_filename}")
+#     else:
+#         print("⚠️ 警告：未能成功读取两个文件，合并中止。")
+
+
+# except FileNotFoundError as e:
+#     print(f"❌ 错误：找不到文件。")
+#     print(f"请检查文件是否存在于指定路径: {e.filename}")
+# except Exception as e:
+#     print(f"❌ 处理过程中发生未知错误: {e}")
+
 import pandas as pd
 import os
 
-# --- 1. 请在这里配置您的文件和参数 ---
+# --- 1. 配置区 ---
+# 未来您只需要修改这个区域即可
 
-# 存放您两个源文件的文件夹
-input_folder = r'F:\实验数据\0831\19'
-# 存放最终合并结果的文件夹
-output_folder = r'F:\实验数据\0831\19'
+# ⚠️ 请将此路径修改为您存放3个CSV文件的实际文件夹路径
+data_folder = r'F:\实验数据\0908\0.15_4_无算法'
+# 建议将处理后的文件存放在一个新的输出文件夹中
+output_folder = r'F:\实验数据\0908\0.15_4_无算法'
 
-# 第一个文件应该是包含 0s-0.499s 数据的文件
-# 第二个文件应该是包含 0.5s-1.999s 数据的文件
-files_to_combine = [
-    'Wm_4.289s_to_4.789s.csv', 
-    'Wm_8.4s_to_9.9s.csv'     
+# 定义需要截取的时间范围 (单位：秒)
+start_time = 7.743
+end_time = 12.743
+
+# ⚠️ 定义所有要处理的文件任务列表
+# 您可以轻松地在此处添加或修改文件
+processing_tasks = [
+    {
+        'input_filename': '0908_Wm_0.15_4.csv',
+        'output_filename': '0908_Wm_0.15_4_5s.csv'
+    },
+    {
+        'input_filename': '0908_Te_0.15_4.csv',
+        'output_filename': '0908_Te_0.15_4_5s.csv'
+    },
+    {
+        'input_filename': '0908_alpha_beta_0.15_3.csv',
+        'output_filename': '0908_alpha_beta_0.15_3_5s.csv'
+    }
 ]
 
-# 这是最终合并后要保存的文件名
-output_filename = 'Wm_Alpha_19.csv'
-
-# 这是最终文件要求的列名
-final_column_names = ['Time', 'Wm']
-
-
-# --- 准备工作 ---
-output_file_path = os.path.join(output_folder, output_filename)
-list_of_dfs = []
+# --- 2. 核心处理逻辑 (通常无需修改) ---
 
 # 如果输出文件夹不存在，则自动创建
 if not os.path.exists(output_folder):
     os.makedirs(output_folder)
     print(f"输出文件夹不存在，已自动创建: {output_folder}")
 
-print("--- 开始合并两个CSV文件 ---")
+print(f"--- 开始批量处理文件，提取时间范围: {start_time}s - {end_time}s ---")
+print("-" * 50)
 
-try:
-    # --- 2. 循环读取并处理文件列表中的文件 ---
-    for filename in files_to_combine:
-        file_path = os.path.join(input_folder, filename)
-        print(f"正在读取文件: {filename} ...")
-        
-        # 读取CSV文件
-        df = pd.read_csv(file_path)
-        
-        # 【关键步骤】在合并前，统一所有文件的列名
-        # 这样做可以确保，即使第二个文件的列名是'Time', 'Data'，也能正确合并
-        df.columns = final_column_names
-        
-        # 将处理好的DataFrame添加到我们的列表中
-        list_of_dfs.append(df)
+# 使用循环遍历任务列表中的每一个任务
+for task in processing_tasks:
+    input_file = task['input_filename']
+    output_file = task['output_filename']
     
-    # --- 3. 将列表中的两个DataFrame合并成一个 ---
-    if len(list_of_dfs) == 2:
-        print("\n两个文件读取完毕，正在合并...")
-        # pd.concat 会将列表中的DataFrame按顺序垂直堆叠
-        # ignore_index=True 会创建一个新的、连续的行索引 (0, 1, 2, ... 1999)
-        combined_df = pd.concat(list_of_dfs, ignore_index=True)
+    print(f"正在处理: {input_file} ...")
+    
+    try:
+        # 组合完整的文件路径
+        input_path = os.path.join(data_folder, input_file)
+        output_path = os.path.join(output_folder, output_file)
 
-        # --- 4. 保存最终合并好的文件 ---
-        combined_df.to_csv(output_file_path, index=False)
+        # 读取源文件
+        df = pd.read_csv(input_path)
 
-        print("-" * 30)
-        print(f"✅ 文件合并成功！")
-        print(f"总数据行数: {len(combined_df)}") # 500 + 1500 = 2000
-        print(f"时间范围: {combined_df['Time'].min()}s 至 {combined_df['Time'].max()}s")
-        print(f"结果已保存到文件: {output_filename}")
-    else:
-        print("⚠️ 警告：未能成功读取两个文件，合并中止。")
+        # 根据时间范围筛选数据
+        condition = (df['Time'] >= start_time) & (df['Time'] <= end_time)
+        time_slice_df = df[condition].copy() # 使用.copy()避免后续操作出现警告
 
+        # 检查是否提取到了数据
+        if time_slice_df.empty:
+            print(f"  ⚠️ 警告：在指定时间范围内没有找到数据，已跳过文件 '{input_file}'。")
+            print("-" * 50)
+            continue # 继续处理下一个文件
 
-except FileNotFoundError as e:
-    print(f"❌ 错误：找不到文件。")
-    print(f"请检查文件是否存在于指定路径: {e.filename}")
-except Exception as e:
-    print(f"❌ 处理过程中发生未知错误: {e}")
+        # 【关键步骤】重置时间列，使其从0开始
+        time_slice_df['Time'] = time_slice_df['Time'] - start_time
+        
+        # 可选：为了避免浮点数精度问题，对时间列进行四舍五入
+        time_slice_df['Time'] = time_slice_df['Time'].round(decimals=3)
+
+        # 保存处理后的文件，列名将保持不变
+        time_slice_df.to_csv(output_path, index=False)
+        print(f"  ✅ 处理成功！提取了 {len(time_slice_df)} 行数据，已保存至 '{output_file}'")
+
+    except FileNotFoundError:
+        print(f"  ❌ 错误：找不到文件 '{input_file}'。请检查文件名和路径是否正确。")
+    except KeyError:
+        print(f"  ❌ 错误：在文件 '{input_file}' 中找不到名为 'Time' 的列。请检查文件内容。")
+    except Exception as e:
+        print(f"  ❌ 处理过程中发生未知错误: {e}")
+    
+    print("-" * 50)
+
+print("所有文件处理任务已全部完成！")
 
 
 

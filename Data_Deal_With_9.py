@@ -267,27 +267,26 @@
 # import pandas as pd
 # import os
 
-# data_folder = r'F:\实验数据\0905\负载-转速数据\0.05'
-
+# data_folder = r'F:\实验数据\0908\0.15_4_无算法'
 
 # processing_tasks = [
 #     {
-#         'input_filename': 'sdd_741.csv',
-#         'output_filename': '0906_Wm_0.05.csv',
+#         'input_filename': 'sdd_876.csv',
+#         'output_filename': '0908_Wm_0.15_4.csv',
 #         'columns_to_use': [1, 2, 3],  # B, C, D
 #         'new_column_names': ['Time', 'Wm', 'Wr']
 #     },
 #     {
-#         'input_filename': 'sdd_742.csv',
-#         'output_filename': '0906_Te_0.05.csv',
+#         'input_filename': 'sdd_877.csv',
+#         'output_filename': '0908_Te_0.15_4.csv',
 #         'columns_to_use': [1, 2, 3],  # B, C, D
 #         'new_column_names': ['Time', 'Te', 'Ts']
 #     },
 #     {
-#         'input_filename': 'sdd_743.csv',
-#         'output_filename': '0906_TL_0.05.csv',
+#         'input_filename': 'sdd_875.csv',
+#         'output_filename': '0908_alpha_beta_4.csv',
 #         'columns_to_use': [1, 2, 3],  # B, C, D
-#         'new_column_names': ['Time', 'TL', 'TL^']
+#         'new_column_names': ['Time', 'alpha', 'beta']
 #     }
 # ]
 
@@ -335,91 +334,91 @@
 # print("所有文件处理任务已全部完成！")
 
 
-import pandas as pd
-import os
+# import pandas as pd
+# import os
 
-# --- 1. 请在这里配置您的文件和参数 ---
+# # --- 1. 请在这里配置您的文件和参数 ---
 
-# ⚠️ 请将此路径修改为您存放CSV文件的实际文件夹路径
-data_folder = r'F:\实验数据\0905\负载-转速数据\0.19'
+# # ⚠️ 请将此路径修改为您存放CSV文件的实际文件夹路径
+# data_folder = r'F:\实验数据\0907\50_1.5'
 
-# 定义输入文件名
-wm_input_filename = '0906_Wm_0.19.csv'
-tl_input_filename = '0906_TL_0.19.csv'
+# # 定义输入文件名
+# wm_input_filename = '0907_Wm_50.0_1.5.csv'
+# tl_input_filename = '0907_TL_50.0_1.5.csv'
 
-# 定义输出文件名
-wm_output_filename = 'Wm_0906_0.19.csv'
-tl_output_filename = 'TL_0906_0.19.csv'
+# # 定义输出文件名
+# wm_output_filename = 'Wm_0907_50.0_1.5.csv'
+# tl_output_filename = 'TL_0907_50.0_1.5.csv'
 
-# 定义搜索的起始时间 (单位：秒)
-start_time = 9.994
+# # 定义搜索的起始时间 (单位：秒)
+# start_time = 11.00
 
-# --- 准备工作 ---
-wm_input_path = os.path.join(data_folder, wm_input_filename)
-tl_input_path = os.path.join(data_folder, tl_input_filename)
-wm_output_path = os.path.join(data_folder, wm_output_filename)
-tl_output_path = os.path.join(data_folder, tl_output_filename)
+# # --- 准备工作 ---
+# wm_input_path = os.path.join(data_folder, wm_input_filename)
+# tl_input_path = os.path.join(data_folder, tl_input_filename)
+# wm_output_path = os.path.join(data_folder, wm_output_filename)
+# tl_output_path = os.path.join(data_folder, tl_output_filename)
 
-print(f"--- 开始动态数据提取任务 ---")
-print(f"数据文件夹: {data_folder}")
-print("-" * 50)
+# print(f"--- 开始动态数据提取任务 ---")
+# print(f"数据文件夹: {data_folder}")
+# print("-" * 50)
 
-try:
-    # --- 2. 读取两个源文件 ---
-    print(f"正在读取文件: {wm_input_filename}")
-    wm_df = pd.read_csv(wm_input_path)
+# try:
+#     # --- 2. 读取两个源文件 ---
+#     print(f"正在读取文件: {wm_input_filename}")
+#     wm_df = pd.read_csv(wm_input_path)
     
-    print(f"正在读取文件: {tl_input_filename}")
-    tl_df = pd.read_csv(tl_input_path)
-    print("文件读取成功！")
-    print("-" * 50)
+#     print(f"正在读取文件: {tl_input_filename}")
+#     tl_df = pd.read_csv(tl_input_path)
+#     print("文件读取成功！")
+#     print("-" * 50)
 
-    # --- 3. 核心步骤: 从Wm文件中确定动态的结束时间 ---
-    print(f"步骤1: 在 '{wm_input_filename}' 中搜索 {start_time}s 之后的Wm最小值...")
+#     # --- 3. 核心步骤: 从Wm文件中确定动态的结束时间 ---
+#     print(f"步骤1: 在 '{wm_input_filename}' 中搜索 {start_time}s 之后的Wm最小值...")
     
-    # 筛选出所有时间大于等于起始时间的数据
-    search_range_df = wm_df[wm_df['Time'] >= start_time]
+#     # 筛选出所有时间大于等于起始时间的数据
+#     search_range_df = wm_df[wm_df['Time'] >= start_time]
     
-    if search_range_df.empty:
-        print(f"  ❌ 错误：在 {start_time}s 之后没有找到任何数据，无法继续。")
-    else:
-        # 使用 .idxmin() 找到Wm列最小值的索引
-        min_wm_index = search_range_df['Wm'].idxmin()
+#     if search_range_df.empty:
+#         print(f"  ❌ 错误：在 {start_time}s 之后没有找到任何数据，无法继续。")
+#     else:
+#         # 使用 .idxmin() 找到Wm列最小值的索引
+#         min_wm_index = search_range_df['Wm'].idxmin()
         
-        # 使用该索引从原始DataFrame中获取对应的Wm值和时间
-        min_wm_value = wm_df.loc[min_wm_index, 'Wm']
-        end_time_dynamic = wm_df.loc[min_wm_index, 'Time']
+#         # 使用该索引从原始DataFrame中获取对应的Wm值和时间
+#         min_wm_value = wm_df.loc[min_wm_index, 'Wm']
+#         end_time_dynamic = wm_df.loc[min_wm_index, 'Time']
         
-        print(f"  ✅ 搜索完成：Wm的最小值为 {min_wm_value:.4f}，出现在 {end_time_dynamic}s。")
-        print(f"  => 确定的数据提取时间范围为: {start_time}s 至 {end_time_dynamic}s")
-        print("-" * 50)
+#         print(f"  ✅ 搜索完成：Wm的最小值为 {min_wm_value:.4f}，出现在 {end_time_dynamic}s。")
+#         print(f"  => 确定的数据提取时间范围为: {start_time}s 至 {end_time_dynamic}s")
+#         print("-" * 50)
 
-        # --- 4. 使用确定的时间范围处理两个文件 ---
+#         # --- 4. 使用确定的时间范围处理两个文件 ---
         
-        # 任务1: 处理 Wm 文件
-        print(f"步骤2: 正在截取 '{wm_input_filename}'...")
-        wm_condition = (wm_df['Time'] >= start_time) & (wm_df['Time'] <= end_time_dynamic)
-        wm_slice_df = wm_df.loc[wm_condition, ['Time', 'Wm']]
-        wm_slice_df.to_csv(wm_output_path, index=False)
-        print(f"  ✅ 成功截取 {len(wm_slice_df)} 行数据并保存至 '{wm_output_filename}'")
+#         # 任务1: 处理 Wm 文件
+#         print(f"步骤2: 正在截取 '{wm_input_filename}'...")
+#         wm_condition = (wm_df['Time'] >= start_time) & (wm_df['Time'] <= end_time_dynamic)
+#         wm_slice_df = wm_df.loc[wm_condition, ['Time', 'Wm']]
+#         wm_slice_df.to_csv(wm_output_path, index=False)
+#         print(f"  ✅ 成功截取 {len(wm_slice_df)} 行数据并保存至 '{wm_output_filename}'")
 
-        # 任务2: 处理 TL 文件
-        print(f"步骤3: 正在截取 '{tl_input_filename}'...")
-        tl_condition = (tl_df['Time'] >= start_time) & (tl_df['Time'] <= end_time_dynamic)
-        tl_slice_df = tl_df.loc[tl_condition, ['Time', 'TL1', 'TL2']]
-        tl_slice_df.to_csv(tl_output_path, index=False)
-        print(f"  ✅ 成功截取 {len(tl_slice_df)} 行数据并保存至 '{tl_output_filename}'")
+#         # 任务2: 处理 TL 文件
+#         print(f"步骤3: 正在截取 '{tl_input_filename}'...")
+#         tl_condition = (tl_df['Time'] >= start_time) & (tl_df['Time'] <= end_time_dynamic)
+#         tl_slice_df = tl_df.loc[tl_condition, ['Time', 'TL1', 'TL2']]
+#         tl_slice_df.to_csv(tl_output_path, index=False)
+#         print(f"  ✅ 成功截取 {len(tl_slice_df)} 行数据并保存至 '{tl_output_filename}'")
         
-        print("-" * 50)
-        print("所有任务处理完毕！")
+#         print("-" * 50)
+#         print("所有任务处理完毕！")
 
-except FileNotFoundError as e:
-    print(f"❌ 错误：找不到文件。")
-    print(f"请检查文件 '{os.path.basename(e.filename)}' 是否存在于您指定的文件夹中。")
-except KeyError as e:
-    print(f"❌ 错误：在文件中找不到指定的列名 {e}。")
-    print("👉 请检查您的CSV文件是否包含脚本中需要的所有列名 (例如 'Time', 'Wm', 'TL1', 'TL2')。")
-except Exception as e:
-    print(f"❌ 处理过程中发生未知错误: {e}")
+# except FileNotFoundError as e:
+#     print(f"❌ 错误：找不到文件。")
+#     print(f"请检查文件 '{os.path.basename(e.filename)}' 是否存在于您指定的文件夹中。")
+# except KeyError as e:
+#     print(f"❌ 错误：在文件中找不到指定的列名 {e}。")
+#     print("👉 请检查您的CSV文件是否包含脚本中需要的所有列名 (例如 'Time', 'Wm', 'TL1', 'TL2')。")
+# except Exception as e:
+#     print(f"❌ 处理过程中发生未知错误: {e}")
 
 
