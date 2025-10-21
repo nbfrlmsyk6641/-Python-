@@ -1,153 +1,153 @@
-# 提取文件
-import pandas as pd
-import os
-
-data_folder = r'D:\SZU\Experiment\Experiment_Data\0921\BigJ_WT_0921\0921_1'
-
-processing_tasks = [
-    {
-        'input_filename': 'sdd_1010.csv',
-        'output_filename': '0921_Wm_1.csv',
-        'columns_to_use': [1, 2, 3],  # B, C, D
-        'new_column_names': ['Time', 'Wm', 'Wr']
-    },
-    {
-        'input_filename': 'sdd_1011.csv',
-        'output_filename': '0921_Te_1.csv',
-        'columns_to_use': [1, 2],  # B, C, D
-        'new_column_names': ['Time', 'Te']
-    },
-    {
-        'input_filename': 'sdd_1012.csv',
-        'output_filename': '0921_AB_1.csv',
-        'columns_to_use': [1, 2, 3],  # B, C, D
-        'new_column_names': ['Time', 'alpha', 'beta']
-    }
-]
-
-
-print(f"--- 开始处理文件夹中的数据: {data_folder} ---")
-print("-" * 50)
-
-for task in processing_tasks:
-    # 从任务字典中获取所有配置信息
-    input_file = task['input_filename']
-    output_file = task['output_filename']
-    cols_to_use = task['columns_to_use']
-    new_cols = task['new_column_names']
-    
-    print(f"正在处理: {input_file} -> {output_file} ...")
-    
-    try:
-        # 组合完整的文件路径
-        input_path = os.path.join(data_folder, input_file)
-        output_path = os.path.join(data_folder, output_file)
-
-        # 读取数据：跳过前28行，无表头，只取指定列
-        df = pd.read_csv(
-            input_path,
-            skiprows=28,
-            header=None,
-            usecols=cols_to_use
-        )
-
-        # 重命名列
-        df.columns = new_cols
-
-        # 保存新文件
-        df.to_csv(output_path, index=False)
-        print(f"  ✅ 处理成功！")
-
-    except FileNotFoundError:
-        print(f"  ❌ 错误：找不到文件 '{input_file}'。请检查文件名是否正确。")
-    except Exception as e:
-        print(f"  ❌ 处理过程中发生未知错误: {e}")
-    
-    print("-" * 50)
-
-print("所有文件处理任务已全部完成！")
-
-
-
-# # 提取时间段
+# # 提取文件
 # import pandas as pd
 # import os
 
-
-# data_folder = r'D:\SZU\Experiment\Experiment_Data\0920\0920_10'
-
-# output_folder = r'D:\SZU\Experiment\Experiment_Data\0920\0920_10' 
-
-# start_time = 16.6524
-# end_time = 21.6524
+# data_folder = r'D:\SZU\Experiment\Experiment_Data\0922\大惯量算法实验\0922_2'
 
 # processing_tasks = [
 #     {
-#         'input_filename': '0920_Wm_10.csv',
-#         'output_filename': '0920_Wm_10_5s.csv'
+#         'input_filename': 'sdd_1050.csv',
+#         'output_filename': '0922_Wm_2.csv',
+#         'columns_to_use': [1, 2, 3],  # B, C, D
+#         'new_column_names': ['Time', 'Wm', 'Wr']
 #     },
 #     {
-#         'input_filename': '0920_Te_10.csv',
-#         'output_filename': '0920_Te_10_5s.csv'
+#         'input_filename': 'sdd_1051.csv',
+#         'output_filename': '0922_Te_2.csv',
+#         'columns_to_use': [1, 2],  # B, C
+#         'new_column_names': ['Time', 'Te']
 #     },
 #     {
-#         'input_filename': '0920_AB_10.csv',
-#         'output_filename': '0920_AB_10_5s.csv'
+#         'input_filename': 'sdd_1052.csv',
+#         'output_filename': '0922_AB_2.csv',
+#         'columns_to_use': [1, 2, 3],  # B, C, D
+#         'new_column_names': ['Time', 'alpha', 'beta']
 #     }
 # ]
 
 
-# if not os.path.exists(output_folder):
-#     os.makedirs(output_folder)
-#     print(f"输出文件夹不存在，已自动创建: {output_folder}")
-
-# print(f"--- 开始批量处理文件，提取时间范围: {start_time}s - {end_time}s ---")
+# print(f"--- 开始处理文件夹中的数据: {data_folder} ---")
 # print("-" * 50)
 
 # for task in processing_tasks:
+#     # 从任务字典中获取所有配置信息
 #     input_file = task['input_filename']
 #     output_file = task['output_filename']
+#     cols_to_use = task['columns_to_use']
+#     new_cols = task['new_column_names']
     
-#     print(f"正在处理: {input_file} ...")
+#     print(f"正在处理: {input_file} -> {output_file} ...")
     
 #     try:
 #         # 组合完整的文件路径
 #         input_path = os.path.join(data_folder, input_file)
-#         output_path = os.path.join(output_folder, output_file)
+#         output_path = os.path.join(data_folder, output_file)
 
-#         # 读取源文件
-#         df = pd.read_csv(input_path)
+#         # 读取数据：跳过前28行，无表头，只取指定列
+#         df = pd.read_csv(
+#             input_path,
+#             skiprows=28,
+#             header=None,
+#             usecols=cols_to_use
+#         )
 
-#         # 根据时间范围筛选数据
-#         condition = (df['Time'] >= start_time) & (df['Time'] <= end_time)
-#         time_slice_df = df[condition].copy() # 使用.copy()避免后续操作出现警告
+#         # 重命名列
+#         df.columns = new_cols
 
-#         # 检查是否提取到了数据
-#         if time_slice_df.empty:
-#             print(f"  ⚠️ 警告：在指定时间范围内没有找到数据，已跳过文件 '{input_file}'。")
-#             print("-" * 50)
-#             continue # 继续处理下一个文件
-
-#         # 【关键步骤】重置时间列，使其从0开始
-#         time_slice_df['Time'] = time_slice_df['Time'] - start_time
-        
-#         # 可选：为了避免浮点数精度问题，对时间列进行四舍五入
-#         time_slice_df['Time'] = time_slice_df['Time'].round(decimals=3)
-
-#         # 保存处理后的文件，列名将保持不变
-#         time_slice_df.to_csv(output_path, index=False)
-#         print(f"  ✅ 处理成功！提取了 {len(time_slice_df)} 行数据，已保存至 '{output_file}'")
+#         # 保存新文件
+#         df.to_csv(output_path, index=False)
+#         print(f"  ✅ 处理成功！")
 
 #     except FileNotFoundError:
-#         print(f"  ❌ 错误：找不到文件 '{input_file}'。请检查文件名和路径是否正确。")
-#     except KeyError:
-#         print(f"  ❌ 错误：在文件 '{input_file}' 中找不到名为 'Time' 的列。请检查文件内容。")
+#         print(f"  ❌ 错误：找不到文件 '{input_file}'。请检查文件名是否正确。")
 #     except Exception as e:
 #         print(f"  ❌ 处理过程中发生未知错误: {e}")
     
 #     print("-" * 50)
 
 # print("所有文件处理任务已全部完成！")
+
+
+
+# 提取时间段
+import pandas as pd
+import os
+
+
+data_folder = r'D:\SZU\Experiment\Experiment_Data\0921\Wm_Beta_Data'
+
+output_folder = r'D:\SZU\Experiment\Experiment_Data\0921\Wm_Beta_Data\处理后的数据' 
+
+start_time = 16.3254
+end_time = 21.3254
+
+processing_tasks = [
+    {
+        'input_filename': '0921_Wm_0.1_0.csv',
+        'output_filename': '1017_Wm_0.1_0_5s.csv'
+    },
+    {
+        'input_filename': '0921_Te_5.csv',
+        'output_filename': '1017_Te_0.10_5s.csv'
+    },
+    {
+        'input_filename': '0921_AB_5.csv',
+        'output_filename': '1017_AB_0.10_5s.csv'
+    }
+]
+
+
+if not os.path.exists(output_folder):
+    os.makedirs(output_folder)
+    print(f"输出文件夹不存在，已自动创建: {output_folder}")
+
+print(f"--- 开始批量处理文件，提取时间范围: {start_time}s - {end_time}s ---")
+print("-" * 50)
+
+for task in processing_tasks:
+    input_file = task['input_filename']
+    output_file = task['output_filename']
+    
+    print(f"正在处理: {input_file} ...")
+    
+    try:
+        # 组合完整的文件路径
+        input_path = os.path.join(data_folder, input_file)
+        output_path = os.path.join(output_folder, output_file)
+
+        # 读取源文件
+        df = pd.read_csv(input_path)
+
+        # 根据时间范围筛选数据
+        condition = (df['Time'] >= start_time) & (df['Time'] <= end_time)
+        time_slice_df = df[condition].copy() # 使用.copy()避免后续操作出现警告
+
+        # 检查是否提取到了数据
+        if time_slice_df.empty:
+            print(f"  ⚠️ 警告：在指定时间范围内没有找到数据，已跳过文件 '{input_file}'。")
+            print("-" * 50)
+            continue # 继续处理下一个文件
+
+        # 【关键步骤】重置时间列，使其从0开始
+        time_slice_df['Time'] = time_slice_df['Time'] - start_time
+        
+        # 可选：为了避免浮点数精度问题，对时间列进行四舍五入
+        time_slice_df['Time'] = time_slice_df['Time'].round(decimals=3)
+
+        # 保存处理后的文件，列名将保持不变
+        time_slice_df.to_csv(output_path, index=False)
+        print(f"  ✅ 处理成功！提取了 {len(time_slice_df)} 行数据，已保存至 '{output_file}'")
+
+    except FileNotFoundError:
+        print(f"  ❌ 错误：找不到文件 '{input_file}'。请检查文件名和路径是否正确。")
+    except KeyError:
+        print(f"  ❌ 错误：在文件 '{input_file}' 中找不到名为 'Time' 的列。请检查文件内容。")
+    except Exception as e:
+        print(f"  ❌ 处理过程中发生未知错误: {e}")
+    
+    print("-" * 50)
+
+print("所有文件处理任务已全部完成！")
 
 
 # # 处理wm的数据
